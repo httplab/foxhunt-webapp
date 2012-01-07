@@ -1,0 +1,3 @@
+[submodule "bem-bl"]
+	path = bem-bl
+	url = https://github.com/bem/bem-bl.git
