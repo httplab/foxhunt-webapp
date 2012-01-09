@@ -11,12 +11,14 @@ configure do
   ActiveRecord::Base.establish_connection @db_settings['development']
 end
 
+configure :development do |config|
+  config.enable :reload
+end
+
 get '/fix' do
   redirect '/foxes'
 end
-
 post '/fix' do
-  p "Fix: [#{params.inspect}]"
   Device.find_or_create_by_device_id_and_sim_id :device_id => params[:device_id], :sim_id => params[:sim_id]
   fix = Fix.create :lat => params[:lat],
                    :lon => params[:lon],
@@ -41,8 +43,35 @@ get '/foxes' do
   content_type :json
   Fox.all.to_json
 end
-
 post '/foxes' do
   content_type :json
   Fox.all.to_json
+end
+post '/foxes/:id' do |fox_id|
+  content_type :json
+  fox = Fox.find fox_id
+  if fox.present?
+    fox.update_attributes :name => params[:name], :lat => params[:lat], :lon => params[:lon]
+    redirect '/foxes'
+  else
+    error 400, "Fox [#{fox_id}] not found"
+  end
+end
+
+get '/users' do
+  content_type :json
+  User.all.to_json
+end
+get '/users/:id/devices' do |user_id|
+  content_type :json
+  u = User.find_by_id user_id
+  if u.present?
+    u.devices.to_json
+  else
+    error 400, "User [#{user_id}] not found"
+  end
+end
+
+get '/devices' do
+  Device.all.to_json
 end
