@@ -4,5 +4,5 @@ require 'sinatra'
 set :environment, :production
 disable :run, :reload
 
-require 'app'
+require './app.rb'
 run Sinatra::Application
