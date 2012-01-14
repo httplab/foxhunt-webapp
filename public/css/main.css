@@ -1,0 +1,72 @@
+/* =============================================================================
+   Primary styles
+   Author:
+   ========================================================================== */
+
+html, body {
+	min-height: 100%;
+}
+
+body {
+	background-color: #ccc;
+	background-image: -webkit-linear-gradient(bottom, #aaa, #ddd);
+}
+
+#main {
+	margin: 2em 1em;
+	width: 1200px;;
+}
+
+#map {
+	float: left;
+	
+	width: 800px;
+	height: 600px;
+
+	border: 3px #fff solid;
+}
+
+#history {
+	font-size: 80%;
+
+	float: left;
+
+	width: 120px;
+	margin-right: 1em;
+}
+
+.history__log {
+	color: #666;
+}
+
+.history__entry {
+	margin: 0;
+	padding: 1px;
+}
+
+.history__entry:hover {
+	background-color: #eee;
+}
+
+.history__undo {
+	font-style: normal;
+
+	display: inline-block;
+	float: right;
+
+	cursor: pointer;
+	background-color: #d55;
+	color: #fff;
+}
+
+#dashboard {
+	float: right;
+	
+	width: 200px;
+
+	padding: 1em;
+
+	text-align: right;
+
+	background-color: #e5e5e5;
+}
