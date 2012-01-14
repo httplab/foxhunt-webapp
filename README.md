@@ -42,5 +42,5 @@
 # TODO:
 
 * Если сервер не запущен, то деплой закончится ошибкой, т.к. после деплоя capistrano попытается сделать `kill -s QUIT cat /path/to/unicorn.pid`, но файла с pid unicorn'a не будет.
-* Смержить бранч [map](https://github.com/httplab/foxhunt-webapp/tree/map) c master.
+* Смержить бранч [map-draft](https://github.com/httplab/foxhunt-webapp/tree/map-draft) c master.
 * Разобраться с компиляцией BEM и либо написать для это capistrano task, либо использовать другое идеологически верное решение.
