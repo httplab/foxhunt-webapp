@@ -43,9 +43,29 @@ get '/foxes' do
   content_type :json
   Fox.all.to_json
 end
-post '/foxes' do
+post '/fox' do
+  fox_attrs = params.reject { |k, v| ![:name, :lat, :lon].include?(k) }
+  if params[:id]
+    fox = Fox.find_by_id params[:id]
+    error 400, "Fox not found" and return if fox.nil?
+    fox.update_attributes fox_attrs
+  else
+    Fox.create fox_attrs
+  end
+
   content_type :json
   Fox.all.to_json
+end
+delete '/fox/:id' do |fox_id|
+  content_type :json
+
+  fox = Fox.find_by_id fox_id
+  if fox
+    fox.destroy
+    Fox.all.to_json
+  else
+    error 400, "Fox [#{fox_id}] isn't found" and return if fox.nil?
+  end
 end
 post '/foxes/:id' do |fox_id|
   content_type :json
